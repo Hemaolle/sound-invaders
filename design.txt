@@ -1,3 +1,34 @@
 -hiiren oikealla voi kuunnella äänen
 -numeroilla voi valita tykin, joka korostetaan jotenkin
 -hiiren vasemmalla ampuu
+-paniikkinappula
+
+
+-EnemySpawner: Kimmo
+	-Väliajat (vaihteluväli) 1/8 nuotin välein (tai monikerta)
+		-laittaa muistiin
+	-montako erilaista
+	-Spawnaa palikoita
+	-soittaa ääniä tietyin välein
+		n s välein soittaa kaikkien äänet		
+	
+-EnemyController: Kimmo
+	-kun kuolee, poista listasta
+	-tappaessa saa pisteitä
+	-jos menee riittävän alas, vähennä elämiä/nollaa kerroin
+
+-Score
+	-pohjapisteet
+	-kerroin
+	-current streak
+
+-Lives
+	-n kpl elämiä
+
+-AudioController: Oskari
+
+-Cannon: Oskari
+	-parametrina nappula, jota painaessa se aktivoidaan
+	-tai voi klikata
+	-aluksi laser
+	
