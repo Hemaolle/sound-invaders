@@ -4,8 +4,6 @@ using System.Collections;
 public class Cannon : MonoBehaviour {
 	
 	public KeyCode activationKey;
-	public Note note1;
-	public Note note2;
 	public NoteTuple noteTuple;
 	
 	private Vector3 originalScale;
@@ -27,7 +25,7 @@ public class Cannon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey(activationKey) && !activated) {// && Time.timeSinceLevelLoad - lastActivateTime > activateCooldown) {
+		if (Input.GetKey(activationKey) && !activated) {
 			Activate();
 		}
 		
@@ -57,9 +55,8 @@ public class Cannon : MonoBehaviour {
 		activated = true;
 		transform.localScale = originalScale * 1.2f;
 		Debug.Log("Cannon activated");
-		StaticAudioPlayer.PlayNote(0.5f, note1.GetStOffset());
-		StaticAudioPlayer.PlayNote(0.5f, note2.GetStOffset());
-		//lastActivateTime = Time.timeSinceLevelLoad;
+		StaticAudioPlayer.PlayNote(0.5f, noteTuple.note1.GetStOffset());
+		StaticAudioPlayer.PlayNote(0.5f, noteTuple.note2.GetStOffset());
 	}
 	
 	public void InActivate() {
