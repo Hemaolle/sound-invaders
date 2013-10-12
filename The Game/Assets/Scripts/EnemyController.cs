@@ -19,4 +19,11 @@ public class EnemyController : MonoBehaviour {
 	public void setInterval(NoteTuple interval){
 		_interval = interval;
 	}
+	
+	public void Shot(NoteTuple cannonInterval) {
+		if(cannonInterval.Equals (_interval))
+			Destroy(gameObject);
+	}
 }
+
+
