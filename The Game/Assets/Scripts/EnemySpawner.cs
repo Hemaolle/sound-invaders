@@ -5,6 +5,7 @@ public class EnemySpawner : MonoBehaviour {
 	public int minTime = 1;
 	public int maxTime = 3;
 	public int enemyCount = 10;
+	public int drag = 8;
 	public GameObject enemy;
 	
 	private NoteTuple[] intervals;
@@ -49,6 +50,8 @@ public class EnemySpawner : MonoBehaviour {
 		//_timeIntervals[0] = _currentInterval;
 		//_enemies[0] = (GameObject)Instantiate(enemy, new Vector3(_rndX, 10, 0), Quaternion.Euler(Vector3.zero));
 		GameObject clone = (GameObject)Instantiate(enemy, new Vector3(_rndX, 10, 0), Quaternion.Euler(Vector3.zero));
+		clone.rigidbody.drag = drag;
+		clone.rigidbody.AddTorque(Vector3.forward*100);
 		EnemyController ec = clone.GetComponentInChildren <EnemyController>();
 		NoteTuple _rndInterval = intervals[Random.Range(0,intervals.Length)];
 		//print (_rndInterval);
