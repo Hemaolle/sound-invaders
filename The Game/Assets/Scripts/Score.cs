@@ -57,6 +57,6 @@ public class Score : MonoBehaviour {
 	}
 	
 	public static void GameOver(){
-		print ("Game over: Final Score " + score);
+		(FindObjectOfType(typeof(GameOver)) as GameOver).GameIsOver();
 	}
 }
