@@ -14,4 +14,14 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
 	
 	}
+	
+	void OnMouseOver () {
+		if (Input.GetMouseButtonDown(0)){
+            Debug.Log("Pressed left click.");
+		}
+   		if (Input.GetMouseButtonDown(1)) {
+      		print("right");
+			StaticAudioPlayer.PlayNote(100, 3);
+   		}
+	}
 }
