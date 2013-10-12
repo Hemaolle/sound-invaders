@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class EnemySpawner : MonoBehaviour {
-	public int minTime = 1;
-	public int maxTime = 3;
-	public int drag = 8;
+	public float minTime = 300;
+	public float maxTime = 600;
+	public int drag = 12;
 	public GameObject enemy;
 	
 	private NoteTuple[] intervals;
@@ -42,7 +42,8 @@ public class EnemySpawner : MonoBehaviour {
 	void spawn(){
 		_lastTime = Time.time;
 		//_timeIntervals = new float[enemyCount];
-		_currentInterval = Random.Range(minTime, maxTime);
+		_currentInterval = Random.Range(minTime, maxTime)/100f;
+		print ("Interval: " + _currentInterval);
 		int _rndX = Random.Range(-15, 15);
 		
 		//_timeIntervals[0] = _currentInterval;
@@ -58,8 +59,8 @@ public class EnemySpawner : MonoBehaviour {
 	}
 	
 	public void increaseSpawnRate(){
-		minTime--;
-		maxTime--;
+		minTime-= 0.1f;
+		maxTime-= 0.1f;
 		if(minTime < 0)
 			minTime = 0;
 		if(maxTime < 1)

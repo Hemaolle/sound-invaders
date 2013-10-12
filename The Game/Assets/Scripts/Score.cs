@@ -50,7 +50,7 @@ public class Score : MonoBehaviour {
 		_spawnSpeedCounter++;
 		_dragCounter++;
 		
-		if(_spawnSpeedCounter>20){
+		if(_spawnSpeedCounter>10){
 			_spawnSpeedCounter = 0;
 			_spawner.increaseSpawnRate();
 		}
