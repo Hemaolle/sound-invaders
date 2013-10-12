@@ -27,6 +27,11 @@ public static class StaticAudioPlayer {
 		audioPlayer.Play(clip, volume, semitoneOffset);
 	}
 	
+	static public void PlayNote(float volume, float semitoneOffset) {
+		InitializeAudioPlayer();
+		audioPlayer.PlayNote(volume, semitoneOffset);
+	}
+	
 	static public void PlayLooping(AudioClip clip) {
 		PlayLooping(clip, 0.5f);
 	}

@@ -23,6 +23,7 @@ using System.Collections.Generic;
 public class AudioPlayer : MonoBehaviour {
 	
 	public GameObject audioSourcePrefab;
+	public AudioClip noteClip;
 	
 	private Dictionary<string,AudioSource> _audioSources;
 	
@@ -63,6 +64,10 @@ public class AudioPlayer : MonoBehaviour {
 		audioSource.Play();
 		audioSource.pitch = Mathf.Pow (2f, semitoneOffset/12.0f);
 		StartCoroutine(DestroyGameobjectWithDelay(go,clip.length));
+	}
+	
+	public void PlayNote(float volume, float semitoneOffset) {
+		Play (noteClip, volume, semitoneOffset);
 	}
 	
 	public void PlayLooping(AudioClip clip) {
