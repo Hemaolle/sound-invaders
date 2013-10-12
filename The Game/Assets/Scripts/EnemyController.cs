@@ -40,6 +40,10 @@ public class EnemyController : MonoBehaviour {
 			Score.Miss();
 		}
     }
+	
+	public void setDrag(float newDrag){
+		rigidbody.drag = newDrag;
+	}
 
 }
 
