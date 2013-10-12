@@ -5,7 +5,7 @@ public class MenuItem : MonoBehaviour {
 	
 	public int index;
 	public Behaviours behaviour;
-	public enum Behaviours{ Quit, None, StartGame, Level }
+	public enum Behaviours{ Quit, None, StartGame, Level, BackToMenu, Credits }
 	
 	
 	private bool activated = false;
@@ -26,6 +26,14 @@ public class MenuItem : MonoBehaviour {
 			
 		case Behaviours.StartGame:
 			behaviourObj = new StartGameBehavriour();
+		break;
+			
+		case Behaviours.BackToMenu:
+			behaviourObj = new BackToMenuBehaviour();
+		break;
+			
+		case Behaviours.Credits:
+			behaviourObj = new CreditsBehaviour();
 		break;
 			
 		default:
@@ -86,6 +94,18 @@ public class MenuItem : MonoBehaviour {
 	private class StartGameBehavriour : MenuItemBehaviour {
 		public void Execute() {
 			Application.LoadLevel("" + (GameObject.FindObjectOfType(typeof (Menu)) as Menu).GetSelectedLevel());	
+		}
+	}
+	
+	private class BackToMenuBehaviour : MenuItemBehaviour {
+		public void Execute() {
+			Application.LoadLevel("Menu");
+		}
+	}
+	
+	private class CreditsBehaviour : MenuItemBehaviour {
+		public void Execute() {
+			Application.LoadLevel("Credits");
 		}
 	}
 }
