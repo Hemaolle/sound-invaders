@@ -3,8 +3,12 @@ using System.Collections;
 
 public class Menu : MonoBehaviour {
 	
+	public TextMesh levelText;
+	public int levels;
+	
 	private int activated = 0;
 	private bool someActivated = false;
+	private int selectedLevel = 1;
 	
 	public GameObject[] menuItems;
 	
@@ -35,6 +39,17 @@ public class Menu : MonoBehaviour {
 			}
 		}
 		
+		if(menuItems[activated].GetComponent<MenuItem>().behaviour == MenuItem.Behaviours.Level) {
+			
+			if(Input.GetKeyDown(KeyCode.LeftArrow)) {
+				ChangeLevel(-1);
+			}
+			
+			if(Input.GetKeyDown(KeyCode.RightArrow)) {
+				ChangeLevel(1);
+			}
+		}
+		
 		if(Input.GetKeyDown(KeyCode.Return)) {
 			Execute(activated);
 		}
@@ -42,6 +57,15 @@ public class Menu : MonoBehaviour {
 	
 	public void Execute(int index) {
 		menuItems[index].GetComponent<MenuItem>().Execute();
+	}
+	
+	public void ChangeLevel(int change) {
+		selectedLevel += change;
+		if (selectedLevel < 1)
+			selectedLevel = levels;
+		else if (selectedLevel > levels)
+			selectedLevel = 1;
+		levelText.text = "" + selectedLevel;
 	}
 	
 	public void Activate(int index) {
@@ -59,5 +83,9 @@ public class Menu : MonoBehaviour {
 	public void Deactivate() {
 		menuItems[activated].GetComponent<MenuItem>().DeActivate();
 		someActivated = false;
+	}
+	
+	public int GetSelectedLevel() {
+		return selectedLevel;	
 	}
 }
