@@ -11,9 +11,6 @@ public class EnemySpawner : MonoBehaviour {
 	private int _cloneCount = 0;
 	private float _lastTime;
 	private float _currentInterval;
-	private int _killCount = 0;
-	private int spawnSpeedCounter = 0;
-	private int dragCounter = 10;
 	//private GameObject[] _enemies;
 	//private float[] _timeIntervals;
 	
@@ -58,5 +55,20 @@ public class EnemySpawner : MonoBehaviour {
 		//print (_rndInterval);
 		ec.setInterval(_rndInterval);
 		_cloneCount++;
+	}
+	
+	public void increaseSpawnRate(){
+		minTime--;
+		maxTime--;
+		if(minTime < 0)
+			minTime = 0;
+		if(maxTime < 1)
+			maxTime = 1;
+	}
+	
+	public void decreaseDrag(){
+		drag--;
+		if(drag < 0)
+			drag = 0;
 	}
 }
