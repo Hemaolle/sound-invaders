@@ -37,6 +37,7 @@ public class EnemyController : MonoBehaviour {
 		if(other.name == "DestroyArea"){
 			GameObject boom = (GameObject)Instantiate(explosion, transform.position, Quaternion.Euler(Vector3.zero));
         	Destroy(gameObject);
+			Score.Miss();
 		}
     }
 
