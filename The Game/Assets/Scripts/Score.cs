@@ -16,10 +16,18 @@ public class Score : MonoBehaviour {
 	private static int _multiplier = 1;
 	private static GUIText staticScoreText;
 	private static GUIText staticMultiplierText;
+	
+	private static int _killCount = 0;
+	private static int _spawnSpeedCounter = 0;
+	private static int _dragCounter = 10;
+	
+	private static EnemySpawner _spawner;
+
 	// Use this for initialization
 	void Start () {
 		staticScoreText = GameObject.Find("Score").GetComponent<GUIText>();
 		staticMultiplierText = GameObject.Find("Multiplier").GetComponent<GUIText>();
+		_spawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
 	}
 	
 	// Update is called once per frame
@@ -38,6 +46,20 @@ public class Score : MonoBehaviour {
 	
 	public static void Hit(){
 		_streak++;
+		_killCount++;
+		_spawnSpeedCounter++;
+		_dragCounter++;
+		
+		if(_spawnSpeedCounter>20){
+			_spawnSpeedCounter = 0;
+			_spawner.increaseSpawnRate();
+		}
+		
+		if(_dragCounter>20){
+			_dragCounter = 0;
+			_spawner.decreaseDrag();
+		}
+		
 		if(_streak > limit1)
 			SetMultiplier(2);
 		if(_streak > limit2)
@@ -50,8 +72,6 @@ public class Score : MonoBehaviour {
 	}
 	
 	public static void Miss(){
-		if(_multiplier == 1)
-			GameOver();
 		_streak = 0;
 		SetMultiplier(1);
 	}
