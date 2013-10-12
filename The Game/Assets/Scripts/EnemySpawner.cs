@@ -14,6 +14,8 @@ public class EnemySpawner : MonoBehaviour {
 	//private GameObject[] _enemies;
 	//private float[] _timeIntervals;
 	
+	private bool spawning = false;
+	
 	// Use this for initialization
 	void Start () {
 		//_enemies = new GameObject[enemyCount];
@@ -27,10 +29,15 @@ public class EnemySpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Time.time - _lastTime > _currentInterval && _cloneCount < enemyCount){
+		
+		if(spawning && Time.time - _lastTime > _currentInterval && _cloneCount < enemyCount){
 			spawn ();
 		}
 			
+	}
+	
+	public void StartSpawning() {
+		spawning = true;	
 	}
 	
 	void spawn(){
