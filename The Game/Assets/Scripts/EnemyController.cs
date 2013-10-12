@@ -3,17 +3,7 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour {
 	
-	
-	
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	private NoteTuple _interval;
 	
 	void OnMouseOver () {
 		if (Input.GetMouseButtonDown(0)){
@@ -21,7 +11,12 @@ public class EnemyController : MonoBehaviour {
 		}
    		if (Input.GetMouseButtonDown(1)) {
       		print("right");
-			StaticAudioPlayer.PlayNote(100, 3);
+			StaticAudioPlayer.PlayNote(0.5f, _interval.note1.GetStOffset());
+			StaticAudioPlayer.PlayNote(0.5f, _interval.note2.GetStOffset());
    		}
+	}
+	
+	public void setInterval(NoteTuple interval){
+		_interval = interval;
 	}
 }
