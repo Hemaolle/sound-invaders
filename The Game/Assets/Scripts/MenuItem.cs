@@ -5,7 +5,7 @@ public class MenuItem : MonoBehaviour {
 	
 	public int index;
 	public Behaviours behaviour;
-	public enum Behaviours{ Quit, None }
+	public enum Behaviours{ Quit, None, StartGame, Level }
 	
 	
 	private bool activated = false;
@@ -22,6 +22,10 @@ public class MenuItem : MonoBehaviour {
 			
 		case Behaviours.Quit:
 			behaviourObj = new QuitBehaviour();
+		break;
+			
+		case Behaviours.StartGame:
+			behaviourObj = new StartGameBehavriour();
 		break;
 			
 		default:
@@ -76,6 +80,12 @@ public class MenuItem : MonoBehaviour {
 	private class NoBehaviour : MenuItemBehaviour {
 		public void Execute() 	{
 			Debug.Log("Do nothing");
+		}
+	}
+	
+	private class StartGameBehavriour : MenuItemBehaviour {
+		public void Execute() {
+			Application.LoadLevel("" + (GameObject.FindObjectOfType(typeof (Menu)) as Menu).GetSelectedLevel());	
 		}
 	}
 }
