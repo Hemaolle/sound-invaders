@@ -13,7 +13,7 @@ public class Score : MonoBehaviour {
 	public GUIText multiplierText;
 	
 	private static int _streak = 0;
-	private static int _multiplier = 1;
+	public static int multiplier = 1;
 	private static GUIText staticScoreText;
 	private static GUIText staticMultiplierText;
 	
@@ -40,8 +40,8 @@ public class Score : MonoBehaviour {
 	}
 	
 	public static void SetMultiplier(int newMultiplier) {
-		_multiplier = newMultiplier;
-		staticMultiplierText.text = "MULTIPLIER " + _multiplier + "X";
+		multiplier = newMultiplier;
+		staticMultiplierText.text = "MULTIPLIER " + multiplier + "X";
 	}
 	
 	public static void Hit(){
@@ -68,7 +68,7 @@ public class Score : MonoBehaviour {
 			SetMultiplier(4);
 		if(_streak > limit4)
 			SetMultiplier(5);
-		IncreaseScore(10 * _multiplier);
+		IncreaseScore(10 * multiplier);
 	}
 	
 	public static void Miss(){

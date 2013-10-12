@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemyController : MonoBehaviour {
 	public GameObject explosion;
 	public int penalty = 300;
+	public AudioClip boomSound;
 	
 	private NoteTuple _interval;
 	private bool dying = false;
@@ -15,7 +16,7 @@ public class EnemyController : MonoBehaviour {
 			StaticAudioPlayer.PlayNote(0.5f, _interval.note2.GetStOffset());
    		}
 	}
-	
+
 	public void setInterval(NoteTuple interval){
 		_interval = interval;
 	}
@@ -24,6 +25,7 @@ public class EnemyController : MonoBehaviour {
 		Rigidbody r = GetComponent<Rigidbody>();
 		if(cannonInterval.Equals(_interval) && !dying){
 			dying = true;
+			StaticAudioPlayer.Play(boomSound);
 			GameObject boom = (GameObject)Instantiate(explosion, transform.position, Quaternion.Euler(Vector3.zero));
 			Destroy(gameObject);
 			Score.Hit();
@@ -36,7 +38,10 @@ public class EnemyController : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if(other.name == "DestroyArea"){
 			GameObject boom = (GameObject)Instantiate(explosion, transform.position, Quaternion.Euler(Vector3.zero));
+			StaticAudioPlayer.Play(boomSound);
         	Destroy(gameObject);
+			if(Score.multiplier == 1 && !GameOver.IsGameOver())
+				Score.GameOver();
 			Score.Miss();
 		}
     }
