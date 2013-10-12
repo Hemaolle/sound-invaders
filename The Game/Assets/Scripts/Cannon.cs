@@ -25,7 +25,7 @@ public class Cannon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(activationKey)) {
+		if (!GameOver.IsGameOver() &&  Input.GetKeyDown(activationKey)) {
 			Activate();
 		}
 		

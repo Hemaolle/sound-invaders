@@ -7,6 +7,7 @@ public class StartPlaying : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		guiText.enabled = true;
 		enemySpawner = FindObjectOfType(typeof(EnemySpawner)) as EnemySpawner;
 	}
 	
