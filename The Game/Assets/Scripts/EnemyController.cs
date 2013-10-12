@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class EnemyController : MonoBehaviour {
+	public GameObject explosion;
 	
 	private NoteTuple _interval;
 	private bool dying = false;
@@ -22,12 +23,15 @@ public class EnemyController : MonoBehaviour {
 	}
 	
 	public void Shot(NoteTuple cannonInterval) {
+		Rigidbody r = GetComponent<Rigidbody>();
 		if(cannonInterval.Equals(_interval) && !dying){
 			dying = true;
-			Rigidbody r = GetComponent<Rigidbody>();
-			r.isKinematic = true;
-			//Destroy(gameObject);
-		}
+			//r.isKinematic = true;
+			GameObject boom = (GameObject)Instantiate(explosion, transform.position, Quaternion.Euler(Vector3.zero));
+			Destroy(gameObject);
+					
+		}else if(!cannonInterval.Equals(_interval) && !dying)
+			r.AddForce(Vector3.down * 300);
 	}
 	
 	void OnTriggerEnter(Collider other) {
@@ -35,6 +39,7 @@ public class EnemyController : MonoBehaviour {
         	Destroy(gameObject);
 		}
     }
+
 }
 
 
