@@ -17,8 +17,8 @@ public class Cannon : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKey(activationKey)) {
-			foreach (Cannon cannon in FindObjectOfType<Cannon>())
-				
+			foreach (Cannon cannon in (FindObjectsOfType(typeof (Cannon)) as Cannon[]))
+				cannon.InActivate();				
 			
 			activated = true;
 			transform.localScale = originalScale * 1.2f;
