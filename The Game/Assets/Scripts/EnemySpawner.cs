@@ -5,9 +5,9 @@ public class EnemySpawner : MonoBehaviour {
 	public int minTime = 1;
 	public int maxTime = 3;
 	public int enemyCount = 10;
-	public int[] intervals;
 	public GameObject enemy;
 	
+	private NoteTuple[] intervals;
 	private int _cloneCount = 0;
 	private float _lastTime;
 	private float _currentInterval;
@@ -17,6 +17,11 @@ public class EnemySpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//_enemies = new GameObject[enemyCount];
+		Cannon[] cannons = FindObjectsOfType(typeof(Cannon)) as Cannon[];
+		intervals = new NoteTuple[cannons.Length];
+		for(int i = 0; i<cannons.Length; i++){
+			intervals[i] = cannons[i].noteTuple;
+		}
 		spawn();
 	}
 	
@@ -36,7 +41,11 @@ public class EnemySpawner : MonoBehaviour {
 		
 		//_timeIntervals[0] = _currentInterval;
 		//_enemies[0] = (GameObject)Instantiate(enemy, new Vector3(_rndX, 10, 0), Quaternion.Euler(Vector3.zero));
-		GameObject clone = (GameObject)Instantiate(enemy, new Vector3(_rndX, 10, 0), Quaternion.Euler(Vector3.zero));
+		GameObject clone = (GameObject)Instantiate(enemy, new Vector3(_rndX, 20, 0), Quaternion.Euler(Vector3.zero));
+		EnemyController ec = clone.GetComponentInChildren <EnemyController>();
+		NoteTuple _rndInterval = intervals[Random.Range(0,intervals.Length)];
+		//print (_rndInterval);
+		ec.setInterval(_rndInterval);
 		_cloneCount++;
 	}
 }
