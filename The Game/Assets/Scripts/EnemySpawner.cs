@@ -41,7 +41,7 @@ public class EnemySpawner : MonoBehaviour {
 		
 		//_timeIntervals[0] = _currentInterval;
 		//_enemies[0] = (GameObject)Instantiate(enemy, new Vector3(_rndX, 10, 0), Quaternion.Euler(Vector3.zero));
-		GameObject clone = (GameObject)Instantiate(enemy, new Vector3(_rndX, 20, 0), Quaternion.Euler(Vector3.zero));
+		GameObject clone = (GameObject)Instantiate(enemy, new Vector3(_rndX, 10, 0), Quaternion.Euler(Vector3.zero));
 		EnemyController ec = clone.GetComponentInChildren <EnemyController>();
 		NoteTuple _rndInterval = intervals[Random.Range(0,intervals.Length)];
 		//print (_rndInterval);
