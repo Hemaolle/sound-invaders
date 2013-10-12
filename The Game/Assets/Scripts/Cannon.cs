@@ -25,17 +25,20 @@ public class Cannon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey(activationKey) && !activated) {
+		if (Input.GetKeyDown(activationKey)) {
 			Activate();
 		}
 		
 		if (Input.GetMouseButtonDown(0) && activated)
 	    {
+			
 	        RaycastHit hit = new RaycastHit();
 	        if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
 	        {
+				Debug.Log ("cannon clicked " + hit.collider.gameObject.name);
 	            if(hit.collider.tag == "Enemy") {
 					ShootLaser(hit.collider.gameObject);
+					hit.collider.gameObject.GetComponent<EnemyController>().Shot(noteTuple);
 				}					
 	        }
 	    }
