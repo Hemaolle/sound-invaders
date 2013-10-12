@@ -25,7 +25,6 @@ public class EnemySpawner : MonoBehaviour {
 		for(int i = 0; i<cannons.Length; i++){
 			intervals[i] = cannons[i].noteTuple;
 		}
-		spawn();
 	}
 	
 	// Update is called once per frame
