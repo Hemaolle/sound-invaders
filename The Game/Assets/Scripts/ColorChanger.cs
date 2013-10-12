@@ -4,28 +4,59 @@ using System.Collections;
 public class ColorChanger : MonoBehaviour {
 
 	public Material[] materials;
+	public TextMesh[] texts;
 	
-	public float varinArvo = 10;
+	public float materiaaliVarinArvo = 10;
+	public float tekstiVarinArvo = 20;
 	
 	public float varinArvonLisays = 10;
 	
 	void Start() 
 	{
+		DontDestroyOnLoad(gameObject);
+		
+		//if(PlayerPrefs.HasKey("Color"))
+		//	varinArvo = PlayerPrefs.GetFloat("Color");
+		
+		FindObjectsWhoseColorShouldChange();
+	}
+	
+	void OnLevelWasLoaded(int level) {
+		FindObjectsWhoseColorShouldChange();
 	}
 	
 	void Update()
 	{
 		
-		varinArvo = varinArvo + varinArvonLisays * Time.deltaTime;
-		
-		if (varinArvo >= 360) varinArvo = 0;
+		IncreaseValue (ref materiaaliVarinArvo, ref varinArvonLisays);
+		IncreaseValue (ref tekstiVarinArvo, ref varinArvonLisays);
 		
 		
 		foreach (var material in materials) 
 		{
-			material.color = ColorFromHSV(varinArvo, 1, 1, 1);
+			material.color = ColorFromHSV(materiaaliVarinArvo, 1, 1, 1);
 		}
 		
+		foreach (TextMesh textMesh in texts) {
+			textMesh.color = ColorFromHSV(tekstiVarinArvo, 1, 1, 1);
+		}
+		
+		//PlayerPrefs.SetFloat("Color", varinArvo);
+	}
+	
+	public void IncreaseValue(ref float increaseThis, ref float amountToIncrease) {
+		increaseThis = increaseThis + amountToIncrease * Time.deltaTime;		
+		if (increaseThis >= 360)
+			increaseThis = 0;
+	}
+	
+	private void FindObjectsWhoseColorShouldChange() {
+		Renderer[] renderers =  FindObjectsOfType(typeof(Renderer)) as Renderer[];
+		materials = new Material[renderers.Length];
+		for (int i = 0; i < renderers.Length; i++)
+			materials[i] = renderers[i].material;
+		
+		texts = FindObjectsOfType(typeof(TextMesh)) as TextMesh[];
 	}
 	
 	
