@@ -6,6 +6,7 @@ public class GameOver : MonoBehaviour {
 	private static bool gameOver = false;
 	
 	void Start() {
+		gameOver = false;
 		guiText.enabled = false;
 		collider.enabled = false;
 		renderer.enabled = false;

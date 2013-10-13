@@ -5,6 +5,7 @@ public class ColorChanger : MonoBehaviour {
 
 	public Material[] materials;
 	public TextMesh[] texts;
+	public ArrayList guiTexts;
 	
 	public float materiaaliVarinArvo = 10;
 	public float tekstiVarinArvo = 20;
@@ -13,16 +14,28 @@ public class ColorChanger : MonoBehaviour {
 	
 	void Start() 
 	{
+		ColorChanger[] colorChangers = GameObject.FindObjectsOfType(typeof(ColorChanger)) as ColorChanger[];
+		foreach(ColorChanger changer in colorChangers)
+			if (changer.gameObject.GetInstanceID() != gameObject.GetInstanceID())
+				Destroy(gameObject);
 		DontDestroyOnLoad(gameObject);
 		
 		//if(PlayerPrefs.HasKey("Color"))
 		//	varinArvo = PlayerPrefs.GetFloat("Color");
 		
 		FindObjectsWhoseColorShouldChange();
+		guiTexts = new ArrayList();
 	}
 	
 	void OnLevelWasLoaded(int level) {
 		FindObjectsWhoseColorShouldChange();
+		guiTexts = new ArrayList();
+		if(GameObject.Find("Score"))
+			guiTexts.Add(GameObject.Find("Score").guiText);
+		if(GameObject.Find("Multiplier"))
+			guiTexts.Add(GameObject.Find("Multiplier").guiText);
+		if(GameObject.Find("GameOver"))
+			guiTexts.Add(GameObject.Find("GameOver").guiText);
 	}
 	
 	void Update()
@@ -39,6 +52,10 @@ public class ColorChanger : MonoBehaviour {
 		
 		foreach (TextMesh textMesh in texts) {
 			textMesh.color = ColorFromHSV(tekstiVarinArvo, 1, 1, 1);
+		}
+		
+		foreach (GUIText guiText in guiTexts) {
+			guiText.color = ColorFromHSV(tekstiVarinArvo, 1, 1, 1);
 		}
 		
 		//PlayerPrefs.SetFloat("Color", varinArvo);

@@ -4,6 +4,7 @@ using System.Collections;
 public class Cannon : MonoBehaviour {
 	
 	public KeyCode activationKey;
+	public int distance;
 	public NoteTuple noteTuple;
 	
 	private Vector3 originalScale;
@@ -16,11 +17,20 @@ public class Cannon : MonoBehaviour {
 	private static int lastLaserActivator;
 	private static float lastActivateTime;
 	
+	void Awake() {
+		int middlenote = (FindObjectOfType(typeof(RandomizeLevelHeight)) as RandomizeLevelHeight).GetLevelMiddleNote();
+		int note1 = middlenote - distance/2;
+		int note2 = middlenote + distance/2 + distance % 2;
+		noteTuple.note1 = Note.GetNote(note1);
+		noteTuple.note2 = Note.GetNote(note2);
+	}
+	
 	// Use this for initialization
 	void Start () {
 		originalScale = transform.localScale;
 		laser = GameObject.Find("Laser").GetComponent<LineRenderer>();
 		laser.enabled = false;
+		
 	}
 	
 	// Update is called once per frame
