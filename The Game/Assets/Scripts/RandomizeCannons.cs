@@ -18,9 +18,10 @@ public class RandomizeCannons : MonoBehaviour {
 				newCannonIndex = Random.Range(0, cannons.Length);
 			} while(usedCannons.Contains(newCannonIndex));
 			GameObject newCannon = Instantiate(cannons[newCannonIndex], cannonLocations[i].transform.position, Quaternion.identity) as GameObject;
-			Destroy(cannonLocations[i]);
+			DestroyImmediate(cannonLocations[i]);
 			usedCannons.Add(newCannonIndex);
 			newCannon.GetComponent<Cannon>().activationKey = keyCodes[i];
 		}
+		print ("New cannons randomized");
 	}
 }
