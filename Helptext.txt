@@ -14,11 +14,6 @@ as long as you have a multiplier, you are safe if an enemy reaches
 the bottom of the map. However, shooting an enemy with a wrong cannon
 resets your current multiplier.
 
-You also have a panic button, which instantly kills every enemy on screen,
-but also costs you your current score multiplier.
-No points are awarded for enemies killed with the panic button.
-The panic button is usable at any point, but only once per level.
-
 
 Controls:
 
@@ -27,7 +22,5 @@ Keyboard 1-8   -  Select a cannon
 Left-click  -  Fire a cannon
 
 Right-click (on enemy)  -  Find out what the enemy sounds like
-
-Spacebar  -  Panic button
 
 The menu is usable with a keyboard or a mouse
