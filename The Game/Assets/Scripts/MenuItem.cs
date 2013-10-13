@@ -6,7 +6,7 @@ public class MenuItem : MonoBehaviour {
 	public int index;
 	public Behaviours behaviour;
 	public enum Behaviours{ Quit, None, StartGame, Level, BackToMenu, Credits, HighScores }
-	
+	public AudioClip activationSound;
 	
 	private bool activated = false;
 	private Vector3 originalScale;
@@ -52,6 +52,7 @@ public class MenuItem : MonoBehaviour {
 	}
 	
 	void OnMouseEnter() {
+		StaticAudioPlayer.Play(activationSound);
 		menu.Activate(index);
 	}
 	
