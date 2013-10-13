@@ -7,6 +7,7 @@ public class Cannon : MonoBehaviour {
 	public int distance;
 	public NoteTuple noteTuple;
 	public string particleMaterialName = "Cannon1";
+	public AudioClip laserSound;
 	private Vector3 originalScale;
 	private bool activated = false;
 	private float activeSizeMultiplier = 1.2f;
@@ -55,6 +56,7 @@ public class Cannon : MonoBehaviour {
 	}
 	
 	private void ShootLaser(GameObject target) {
+		StaticAudioPlayer.Play(laserSound);
 		laser.SetPosition(0, transform.position + Vector3.forward);
 		laser.SetPosition(1, target.collider.transform.position + Vector3.forward);
 		laser.enabled = true;
