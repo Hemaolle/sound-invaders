@@ -6,7 +6,8 @@ Your aim is to shoot the approaching enemies with a correct cannon
 to score points. Each enemy makes a certain sound,
 and can only be killed with a cannon that makes the same sound.
 If you use a wrong cannon, the enemy gains a temporary speed increase. 
-The game ends when an enemy reaches the ground while your score multiplier is at 1.
+The game ends when an enemy reaches the ground while your score
+multiplier is at 1.
 
 As you kill more and more enemies in succession without any mistakes,
 you eventually gain a score multiplier. This also acts as your lives:
@@ -16,11 +17,7 @@ resets your current multiplier.
 
 
 Controls:
-
 Keyboard 1-8   -  Select a cannon
-
 Left-click  -  Fire a cannon
-
 Right-click (on enemy)  -  Find out what the enemy sounds like
-
 The menu is usable with a keyboard or a mouse

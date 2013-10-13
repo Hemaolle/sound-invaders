@@ -5,7 +5,7 @@ public class MenuItem : MonoBehaviour {
 	
 	public int index;
 	public Behaviours behaviour;
-	public enum Behaviours{ Quit, None, StartGame, Level, BackToMenu, Credits, HighScores }
+	public enum Behaviours{ Quit, None, StartGame, Level, BackToMenu, Credits, HighScores, Help }
 	public AudioClip activationSound;
 	
 	private bool activated = false;
@@ -38,6 +38,10 @@ public class MenuItem : MonoBehaviour {
 			
 		case Behaviours.HighScores:
 			behaviourObj = new HighScoreBehaviour();
+		break;
+			
+		case Behaviours.Help:
+			behaviourObj = new HelpBehaviour();
 		break;
 			
 		default:
@@ -117,6 +121,12 @@ public class MenuItem : MonoBehaviour {
 	private class HighScoreBehaviour : MenuItemBehaviour {
 		public void Execute() {
 			Application.LoadLevel("HighScores");
+		}
+	}
+	
+	private class HelpBehaviour : MenuItemBehaviour {
+		public void Execute() {
+			Application.LoadLevel("Help");
 		}
 	}
 }
