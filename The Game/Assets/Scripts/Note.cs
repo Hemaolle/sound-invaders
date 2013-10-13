@@ -13,4 +13,11 @@ public class Note {
 		//return 0;
 		return (int)nname + octave * 12;
 	}
+	
+	public static Note GetNote(int semitoneOffset) {
+		Note returnNote = new Note();
+		returnNote.octave = semitoneOffset / 12;
+		returnNote.nname = (NName)(semitoneOffset % 12);
+		return returnNote;
+	}
 }
