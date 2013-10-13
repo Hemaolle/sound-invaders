@@ -21,17 +21,15 @@ public class EnemyController : MonoBehaviour {
 		_interval = interval;
 	}
 	
-	public void Shot(NoteTuple cannonInterval) {
+	public void Shot(NoteTuple cannonInterval, string material) {
 		Rigidbody r = GetComponent<Rigidbody>();
 		if(cannonInterval.Equals(_interval) && !dying){
 			dying = true;
 			StaticAudioPlayer.Play(boomSound);
-			string part = "Particle" + _interval.Interval().ToString();
-			print ("part: " +part);
 			GameObject boom = (GameObject)Instantiate(explosion, transform.position, Quaternion.Euler(Vector3.zero));
 			ParticleSystem[] systems = boom.GetComponentsInChildren<ParticleSystem>();
 			for(int i = 0; i < systems.Length; i++){
-				//systems[i].renderer.material = (Material)Resources.Load(part);
+				systems[i].renderer.material = (Material)Resources.Load(material);
 			}
 			Destroy(gameObject);
 			Score.Hit();

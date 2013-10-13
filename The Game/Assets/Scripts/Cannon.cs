@@ -6,7 +6,7 @@ public class Cannon : MonoBehaviour {
 	public KeyCode activationKey;
 	public int distance;
 	public NoteTuple noteTuple;
-	
+	public string particleMaterialName = "Cannon1";
 	private Vector3 originalScale;
 	private bool activated = false;
 	private float activeSizeMultiplier = 1.2f;
@@ -48,7 +48,7 @@ public class Cannon : MonoBehaviour {
 				Debug.Log ("cannon clicked " + hit.collider.gameObject.name);
 	            if(hit.collider.tag == "Enemy") {
 					ShootLaser(hit.collider.gameObject);
-					hit.collider.gameObject.GetComponent<EnemyController>().Shot(noteTuple);
+					hit.collider.gameObject.GetComponent<EnemyController>().Shot(noteTuple, particleMaterialName);
 				}					
 	        }
 	    }
