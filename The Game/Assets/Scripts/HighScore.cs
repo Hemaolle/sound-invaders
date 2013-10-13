@@ -16,7 +16,7 @@ public class HighScore : MonoBehaviour {
 	
 	private string nameString = "Level{0}Name{1}";
 	private string scoreString = "Level{0}Score{1}";
-	private string playerName = "Nam";
+	private string playerName = "ABC";
 	private int scoreIndex;
 	private bool newHighScore = false;
 	private bool visible = false;
