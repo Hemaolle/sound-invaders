@@ -5,12 +5,14 @@ public class HighScore : MonoBehaviour {
 	
 	public Texture okTexture;
 	public GameObject backToMenu;
+	public TextMesh title;
 	
 	public string[] names;
 	public int[] scores;
 	
 	public GUIText[] nameTexts;
 	public GUIText[] scoreTexts;
+	public GUIText[] numberTexts;
 	
 	private string nameString = "Level{0}Name{1}";
 	private string scoreString = "Level{0}Score{1}";
@@ -45,7 +47,7 @@ public class HighScore : MonoBehaviour {
 	
 	public void populateNameAndScoreTexts() {
 		for(int i = 0; i < 10; i++) {
-			nameTexts[i].text = i + 1 + ". " + names[i];
+			nameTexts[i].text = names[i];
 			scoreTexts[i].text = "" + scores[i];	
 		}
 	}
@@ -92,8 +94,12 @@ public class HighScore : MonoBehaviour {
 			text.enabled = false;
 		foreach(GUIText text in scoreTexts)
 			text.enabled = false;
+		foreach(GUIText text in numberTexts)
+			text.enabled = false;
 		backToMenu.renderer.enabled = false;
 		backToMenu.collider.enabled = false;
+		if (title != null)
+			title.renderer.enabled = false;
 		/*loadScores(1);
 		populateNameAndScoreTexts();
 		bool changed;
@@ -106,18 +112,24 @@ public class HighScore : MonoBehaviour {
 			text.enabled = true;
 		foreach(GUIText text in scoreTexts)
 			text.enabled = true;
+		foreach(GUIText text in numberTexts)
+			text.enabled = true;
 		loadScores(Application.loadedLevel);
 		scoreIndex = insertScore(score, out newHighScore);
 		populateNameAndScoreTexts();
 		visible = true;
 		backToMenu.renderer.enabled = true;
 		backToMenu.collider.enabled = true;
+		title.renderer.enabled = true;
+		title.text = "LEVEL " + Application.loadedLevelName + " HIGH SCORES";
 	}
 	
 	public void DisplayHighScores(int level) {
 		foreach(GUIText text in nameTexts)
 			text.enabled = true;
 		foreach(GUIText text in scoreTexts)
+			text.enabled = true;
+		foreach(GUIText text in numberTexts)
 			text.enabled = true;
 		loadScores(level);
 		populateNameAndScoreTexts();
@@ -130,9 +142,9 @@ public class HighScore : MonoBehaviour {
 		//string textAreaString = GUI.TextArea (new Rect (Screen.width / 2.0f - Screen.width * 0.1f ,Screen.height / 2.0f - Screen.height * 0.3f, 100f, 30f), "Name");
 		 //playerName = GUI.TextField(new Rect(Screen.width / 2.0f - Screen.width * 0.1f ,Screen.height / 2.0f - Screen.height * 0.3f, 100f, 30f), playerName, 3);
 		if (visible && newHighScore) {
-			playerName = GUI.TextField(new Rect(Screen.width/2f - Screen.width * 0.2f, Screen.height/2f + Screen.height * 0.2f, Screen.width * 0.2f, Screen.height * 0.05f), playerName, 3);
+			playerName = GUI.TextField(new Rect(Screen.width/2f - Screen.width * 0.2f, Screen.height/2f + Screen.height * 0.3f, Screen.width * 0.2f, Screen.height * 0.05f), playerName, 3);
 			
-		  	if (GUI.Button(new Rect(Screen.width/2f + Screen.width * 0.15f, Screen.height/2f + Screen.height * 0.2f, Screen.width * 0.1f, Screen.height * 0.05f), okTexture)) {
+		  	if (GUI.Button(new Rect(Screen.width/2f + Screen.width * 0.15f, Screen.height/2f + Screen.height * 0.3f, Screen.width * 0.1f, Screen.height * 0.05f), okTexture)) {
 				setName(playerName, scoreIndex);
 				populateNameAndScoreTexts();
 				saveScores(Application.loadedLevel);

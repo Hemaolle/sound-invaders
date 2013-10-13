@@ -51,10 +51,10 @@ public class ColorChanger : MonoBehaviour {
 	}
 	
 	private void FindObjectsWhoseColorShouldChange() {
-		Renderer[] renderers =  FindObjectsOfType(typeof(Renderer)) as Renderer[];
+		/*Renderer[] renderers =  FindObjectsOfType(typeof(Renderer)) as Renderer[];
 		materials = new Material[renderers.Length];
 		for (int i = 0; i < renderers.Length; i++)
-			materials[i] = renderers[i].material;
+			materials[i] = renderers[i].material;*/
 		
 		texts = FindObjectsOfType(typeof(TextMesh)) as TextMesh[];
 	}
