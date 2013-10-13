@@ -20,6 +20,7 @@ public class HighScore : MonoBehaviour {
 	private int scoreIndex;
 	private bool newHighScore = false;
 	private bool visible = false;
+	private bool nameEntered = false;
 	
 	public void loadScores(int level) {
 		names = new string[10];
@@ -141,13 +142,14 @@ public class HighScore : MonoBehaviour {
 	void OnGUI() {
 		//string textAreaString = GUI.TextArea (new Rect (Screen.width / 2.0f - Screen.width * 0.1f ,Screen.height / 2.0f - Screen.height * 0.3f, 100f, 30f), "Name");
 		 //playerName = GUI.TextField(new Rect(Screen.width / 2.0f - Screen.width * 0.1f ,Screen.height / 2.0f - Screen.height * 0.3f, 100f, 30f), playerName, 3);
-		if (visible && newHighScore) {
+		if (visible && newHighScore && !nameEntered) {
 			playerName = GUI.TextField(new Rect(Screen.width/2f - Screen.width * 0.2f, Screen.height/2f + Screen.height * 0.3f, Screen.width * 0.2f, Screen.height * 0.05f), playerName, 3);
 			
 		  	if (GUI.Button(new Rect(Screen.width/2f + Screen.width * 0.15f, Screen.height/2f + Screen.height * 0.3f, Screen.width * 0.1f, Screen.height * 0.05f), okTexture)) {
 				setName(playerName, scoreIndex);
 				populateNameAndScoreTexts();
 				saveScores(Application.loadedLevel);
+				nameEntered = true;
 			}
 		}
         	
