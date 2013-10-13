@@ -26,7 +26,13 @@ public class EnemyController : MonoBehaviour {
 		if(cannonInterval.Equals(_interval) && !dying){
 			dying = true;
 			StaticAudioPlayer.Play(boomSound);
+			string part = "Particle" + _interval.Interval().ToString();
+			print ("part: " +part);
 			GameObject boom = (GameObject)Instantiate(explosion, transform.position, Quaternion.Euler(Vector3.zero));
+			ParticleSystem[] systems = boom.GetComponentsInChildren<ParticleSystem>();
+			for(int i = 0; i < systems.Length; i++){
+				//systems[i].renderer.material = (Material)Resources.Load(part);
+			}
 			Destroy(gameObject);
 			Score.Hit();
 		}else if(!cannonInterval.Equals(_interval) && !dying){

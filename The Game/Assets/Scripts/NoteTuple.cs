@@ -16,4 +16,7 @@ public class NoteTuple {
 		else
 			return false;
 	}
+	public int Interval(){
+		return Mathf.Abs((int)(note1.GetStOffset() - note2.GetStOffset()));
+	}
 }
