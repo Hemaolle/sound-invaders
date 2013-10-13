@@ -87,7 +87,7 @@ public class HighScore : MonoBehaviour {
 	}
 	
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		foreach(GUIText text in nameTexts)
 			text.enabled = false;
 		foreach(GUIText text in scoreTexts)
@@ -101,13 +101,25 @@ public class HighScore : MonoBehaviour {
 		populateNameAndScoreTexts();*/
 	}
 	
-	public void ShowHighscoreList(int score) {
+	public void InsertNewHighScore(int score) {
 		foreach(GUIText text in nameTexts)
 			text.enabled = true;
 		foreach(GUIText text in scoreTexts)
 			text.enabled = true;
 		loadScores(Application.loadedLevel);
 		scoreIndex = insertScore(score, out newHighScore);
+		populateNameAndScoreTexts();
+		visible = true;
+		backToMenu.renderer.enabled = true;
+		backToMenu.collider.enabled = true;
+	}
+	
+	public void DisplayHighScores(int level) {
+		foreach(GUIText text in nameTexts)
+			text.enabled = true;
+		foreach(GUIText text in scoreTexts)
+			text.enabled = true;
+		loadScores(level);
 		populateNameAndScoreTexts();
 		visible = true;
 		backToMenu.renderer.enabled = true;
