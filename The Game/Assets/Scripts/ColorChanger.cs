@@ -6,6 +6,7 @@ public class ColorChanger : MonoBehaviour {
 	public Material[] materials;
 	public TextMesh[] texts;
 	public ArrayList guiTexts;
+	public Material[] particleMaterials;
 	
 	public float materiaaliVarinArvo = 10;
 	public float tekstiVarinArvo = 20;
@@ -56,6 +57,11 @@ public class ColorChanger : MonoBehaviour {
 		
 		foreach (GUIText guiText in guiTexts) {
 			guiText.color = ColorFromHSV(tekstiVarinArvo, 1, 1, 1);
+		}
+		
+		foreach (var material in particleMaterials) 
+		{
+			material.SetColor("_TintColor", ColorFromHSV(materiaaliVarinArvo, 1, 1, 1));
 		}
 		
 		//PlayerPrefs.SetFloat("Color", varinArvo);
