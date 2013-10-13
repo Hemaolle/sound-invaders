@@ -28,7 +28,7 @@ public class GameOver : MonoBehaviour {
 	public void ShowHighScore() {
 		guiText.enabled = false;
 		collider.enabled = false;	
-		(FindObjectOfType(typeof(HighScore)) as HighScore).ShowHighscoreList(Score.score);
+		(FindObjectOfType(typeof(HighScore)) as HighScore).InsertNewHighScore(Score.score);
 	}
 	
 	public static bool IsGameOver(){

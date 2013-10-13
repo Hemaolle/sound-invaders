@@ -5,7 +5,7 @@ public class MenuItem : MonoBehaviour {
 	
 	public int index;
 	public Behaviours behaviour;
-	public enum Behaviours{ Quit, None, StartGame, Level, BackToMenu, Credits }
+	public enum Behaviours{ Quit, None, StartGame, Level, BackToMenu, Credits, HighScores }
 	
 	
 	private bool activated = false;
@@ -34,6 +34,10 @@ public class MenuItem : MonoBehaviour {
 			
 		case Behaviours.Credits:
 			behaviourObj = new CreditsBehaviour();
+		break;
+			
+		case Behaviours.HighScores:
+			behaviourObj = new HighScoreBehaviour();
 		break;
 			
 		default:
@@ -106,6 +110,12 @@ public class MenuItem : MonoBehaviour {
 	private class CreditsBehaviour : MenuItemBehaviour {
 		public void Execute() {
 			Application.LoadLevel("Credits");
+		}
+	}
+	
+	private class HighScoreBehaviour : MenuItemBehaviour {
+		public void Execute() {
+			Application.LoadLevel("HighScores");
 		}
 	}
 }
